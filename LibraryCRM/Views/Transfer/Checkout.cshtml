@@ -1,0 +1,15 @@
+﻿
+@model TransferViewModel
+
+<h2>Выдача</h2>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Checkout" method="post">
+  
+    <div class="form-group">
+        <label>Номер читательского:</label><input asp-for="CardNumber" class="form-control" />
+    </div>
+    <div class="text-center">
+        <input class="btn btn-primary" type="submit" value="Выдать" />
+    </div>
+</form>

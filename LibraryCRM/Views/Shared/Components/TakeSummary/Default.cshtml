@@ -1,0 +1,18 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions;
+@model LibraryCRM.Data.Models.Take
+
+<div class="">
+    @if (Model.Lines.Count() > 0)
+    {
+        <small class="navbar-text">
+            <b>Ваши книги:</b>
+
+
+        </small>
+    }
+    <a class="btn btn-sm btn-dark navbar-btn"
+       asp-controller="Take" asp-action="Index"
+       asp-route-returnurl="@ViewContext.HttpContext.Request.GetEncodedPathAndQuery()">
+        <i class="fa fa-book"></i>
+    </a>
+</div>

@@ -1,0 +1,49 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService AuthorizationService
+@model BookViewModel
+@{
+    ViewBag.Title = "Панель редактирования";
+    Layout = "_Layout";
+}
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="BookID" />
+    @if (User.IsInRole("Admin") || User.IsInRole("Storekeeper"))
+    {
+        <div class="form-group">
+            <label asp-for="Name">Название книги:</label>
+            <div><span asp-validation-for="Name" class="text-danger"></span></div>
+            <input asp-for="Name" class="form-control" />
+        </div>
+    }
+
+    @if (User.IsInRole("Admin") || User.IsInRole("Storekeeper"))
+    {
+        <div class="form-group">
+            <label asp-for="Author">Автор:</label>
+            <div>
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+            <textarea asp-for="Author" class="form-control"></textarea>
+        </div>
+    }
+
+    @if (User.IsInRole("Admin") || User.IsInRole("Storekeeper"))
+    {
+        <div class="form-group">
+            <label asp-for="GenresID"></label>
+
+            <select asp-for="GenresID" asp-items="ViewBag.Genres"></select>
+        </div>
+    }
+    @if (User.IsInRole("Admin") || User.IsInRole("Storekeeper") || User.IsInRole("Librarian"))
+    {
+        <div class="form-group">
+            <label asp-for="Count">Количество:</label>
+            <input asp-for="Count" class="form-control" />
+        </div>
+    }
+    <div class="text-center">
+        <button class="btn btn-primary" type="submit">Save</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </div>
+</form>

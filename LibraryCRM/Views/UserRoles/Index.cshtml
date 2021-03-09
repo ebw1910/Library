@@ -1,0 +1,29 @@
+﻿@using LibraryCRM.Models
+@model List<LibraryCRM.Models.ViewModels.UserRolesViewModel>
+@{ ViewData["Title"] = "Index";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+<h1>Пользовательские Роли</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Email</th>
+            <th>Роль</th>
+            <th>Права</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+<tr>
+    <td>@user.FirstName</td>
+    <td>@user.LastName</td>
+    <td>@user.Email</td>
+    <td>@string.Join(" , ", user.Roles.ToList())</td>
+    <td>
+        <a class="btn btn-primary" asp-controller="UserRoles" asp-action="Manage" asp-route-userId="@user.UserId">Изменить Роль</a>
+    </td>
+</tr>}
+    </tbody>
+</table>

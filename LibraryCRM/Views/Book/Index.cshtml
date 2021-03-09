@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+@model LibraryCRM.Models.ViewModels.BookListViewModel
+
+<form asp-controller="Book" asp-action="Index">
+     
+    <p>
+        <input type="text" name="search" class="blockquote" />
+
+        <input type="image" src="/css/search.svg" class="btn btn-primary mb-2" />
+        <div class="text-right">
+            @await Component.InvokeAsync("TakeSummary")
+        </div>
+    </p>
+</form>
+
+    @await Component.InvokeAsync("NavigationMenu")
+    @foreach (var p in Model.Books)
+    {
+        <partial name="BookSummary" model="p" />
+    }
+    <div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true"
+         page-class="btn" page-class-normal="btn-secondary"
+         page-class-selected="btn-primary" page-url-genres="@Model.CurrentGenres"
+         class="btn-group pull-left m-1">
+    </div>

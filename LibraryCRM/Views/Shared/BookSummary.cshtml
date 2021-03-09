@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNetCore.Http.Extensions;
+@model BookViewModel
+
+
+<div class=" form-group card card-outline-primary m-1 p-1">
+    <div class="form-group bg-faded p-1">
+        <h4>
+            @Model.Name
+
+        </h4>
+
+    </div>
+    <form id="@Model.BookID" asp-action="AddToTake"
+          asp-controller="Take" method="post">
+        <input type="hidden" asp-for="BookID" />
+        <input type="hidden" name="returnUrl"
+               value="@ViewContext.HttpContext.Request.GetEncodedPathAndQuery()" />
+        <label>Количество: @Model.Count</label>
+        <span class="take-text p-1">
+            @if (Model.Count == 0)
+            {
+                <button type="submit"
+                        class="btn btn-success btn-sm" style="float:right" disabled>
+                    Взять книгу
+
+                </button>
+            }
+            else
+            {
+                <button type="submit"
+                        class="btn btn-success btn-sm" style="float:right">
+                    Взять книгу
+
+                </button>
+            }
+
+
+        </span>
+
+    </form>
+
+    @Model.Author
+</div>

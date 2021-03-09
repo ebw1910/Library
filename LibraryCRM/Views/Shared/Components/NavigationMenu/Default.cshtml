@@ -1,0 +1,23 @@
+﻿@model IEnumerable<string>
+
+<a class="nav flex-column btn btn-block btn-secondary"
+   asp-action="Index"
+   asp-controller="Book"
+   asp-route-genres="">
+    Домой
+</a>
+<p>
+    @foreach (string genres in Model)
+    {
+
+        <a class="nav flex-column btn btn-block btn-vertical
+       @(genres == ViewBag.SelectedGenres ? "btn-primary": "btn-secondary")"
+           style="margin-top:5px"
+           asp-action="Index"
+           asp-controller="Book"
+           asp-route-genres="@genres"
+           asp-route-bookPage="1">
+            @genres
+        </a>
+
+    }
